@@ -25,14 +25,30 @@ MINUS   : '-';
 TIMES   : '*';
 RANDOM  : 'random';
 POINT   : 'point';
+PRINT   : 'print';
 
 // Keywords
 NUMBER: '-'?[0-9]+('.'[0-9]+)?;
 
 // Entry point
-program : (expression)* EOF;
+program : (statement)* EOF;
 
-expression : 'ex'/* Insert expressions */;
+statement : 
+    expression SEMI?                              # ExprStmt
+    | PRINT expression SEMI?                      # PrintStmt
+    ;
 
-point : 'p'/* Insert point */;
-range : 'r'/* Insert range */;
+expression : 
+    NUMBER                                    # NumberExpr
+    | LPAREN expression RPAREN               # ParenExpr
+    | expression PLUS expression             # PlusExpr
+    | expression MINUS expression            # MinusExpr
+    | expression TIMES expression            # TimesExpr
+    | NEG expression                         # NegExpr
+    | RANDOM range                           # RandomExpr
+    | POINT expression expression            # PointExpr
+    ;
+
+point : LPAREN expression COMMA expression RPAREN;
+
+range : LSQUARE expression COMMA expression RSQUARE;
