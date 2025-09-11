@@ -35,7 +35,7 @@ public class OperationNode extends Node {
                     throw new AeroScriptRuntimeException("Undefined operation: '" + operation + "'");
             }
         } catch (AeroScriptRuntimeException e) {
-            throw e; // Re-throw our custom exceptions
+            throw e;
         } catch (Exception e) {
             throw new AeroScriptRuntimeException("Error evaluating operation '" + operation + "': " + e.getMessage(),
                     e);
@@ -86,7 +86,6 @@ public class OperationNode extends Node {
                 Range range = (Range) rightValue;
                 return range.getRandomValue();
             } else {
-                // Handle case where right is a NumberNode (for testing)
                 if (left == null) {
                     throw new AeroScriptRuntimeException("Left operand is null for RANDOM operation");
                 }

@@ -66,7 +66,6 @@ public class Interpreter extends AeroScriptBaseVisitor<Object> {
     @Override
     public Node visitRandomExpr(AeroScriptParser.RandomExprContext ctx) {
         Range range = (Range) visitRange(ctx.range());
-        // Create a dummy node to hold the range
         Node rangeNode = new Node() {
             @Override
             public Object evaluate() {
