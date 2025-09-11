@@ -5,7 +5,6 @@ import no.uio.aeroscript.antlr.AeroScriptParser;
 import no.uio.aeroscript.ast.expr.Node;
 import no.uio.aeroscript.ast.expr.NumberNode;
 import no.uio.aeroscript.ast.expr.OperationNode;
-import no.uio.aeroscript.type.Point;
 import no.uio.aeroscript.type.Range;
 
 public class Interpreter extends AeroScriptBaseVisitor<Object> {
