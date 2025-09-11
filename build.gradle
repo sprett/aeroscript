@@ -56,6 +56,10 @@ jar {
 
 test {
     useJUnitPlatform()
+    reports {
+        html.required = true
+        junitXml.required = true
+    }
 }
 
 mainClassName = 'no.uio.aeroscript.Main'
