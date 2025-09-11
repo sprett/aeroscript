@@ -3,7 +3,6 @@ package no.uio.aeroscript;
 import no.uio.aeroscript.antlr.AeroScriptLexer;
 import no.uio.aeroscript.antlr.AeroScriptParser;
 import no.uio.aeroscript.ast.expr.Node;
-import no.uio.aeroscript.ast.expr.PrintNode;
 import no.uio.aeroscript.runtime.Interpreter;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -37,11 +36,8 @@ public class Main {
                     AeroScriptParser parser = new AeroScriptParser(tokens);
 
                     Node result = (Node) interpreter.visit(parser.statement());
-                    if (!(result instanceof PrintNode)) {
                         System.out.println(line + " = " + result.evaluate());
-                    } else {
                         result.evaluate(); // PrintNode handles its own output
-                    }
                 } catch (Exception e) {
                     System.err.println("Error parsing line: " + line);
                     System.err.println("Error: " + e.getMessage());
